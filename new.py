@@ -11,6 +11,7 @@ vs = VideoStream(src=0).start()
 time.sleep(1.0)
 
 initBB = None
+state = 0
 
 while True:
     print("ok")
@@ -35,12 +36,26 @@ while True:
             cv2.circle(frame, (center[0], center[1]), 10, (0, 255, 0), 1)
             if center[0] < W/3:
                 print("left")
-                pyautogui.keyDown('left')
-                pyautogui.keyUp('left')
+                while state != -1: 
+                    pyautogui.keyDown('left')
+                    pyautogui.keyUp('left')
+                    state -= 1
             elif center[0] > 2*W/3:
                 print("right")
-                pyautogui.keyDown('right')
-                pyautogui.keyUp('right')
+                while state != 1:
+                    pyautogui.keyDown('right')
+                    pyautogui.keyUp('right')
+                    state += 1
+            else:
+                print("center")
+                if state == -1:
+                    pyautogui.keyDown('right')
+                    pyautogui.keyUp('right')
+                    state += 1
+                elif state == 1:
+                    pyautogui.keyDown('left')
+                    pyautogui.keyUp('left')
+                    state -= 1
             if center[1] < H/3:
                 print("up")
                 pyautogui.keyDown('up')
