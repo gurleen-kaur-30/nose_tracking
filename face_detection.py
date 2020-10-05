@@ -23,11 +23,11 @@ while True:
             cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
             roi_gray = gray[y:y+h, x:x+w]
             roi_color = img[y:y+h, x:x+w]  
-            bbox = x+w/2 -20, y+h/2 - 20, 40, 40
-    	    cv2.rectangle(img, bbox, (0,255,0), 2)
+            bbox = int(x+w/2 -20), int(y+h/2 - 20), w, h
+            cv2.rectangle(img, bbox, (0,255,0), 2)
             tracker.init(img, bbox)
             cv2.imshow('video',img)
-	    cnt = cnt - 1
+            cnt = cnt - 1
     else:
         for (x,y,w,h) in faces:
             cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
