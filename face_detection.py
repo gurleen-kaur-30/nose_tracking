@@ -2,8 +2,8 @@ import numpy as np
 import cv2
 
 def getNose(x,y,w,h,img):
-    centre_coordinates = (x+w/2, y+h/2)
-    cv2.circle(img, centre_coordinates, 30, (255,0,0), 2)
+    centre_coordinates = (int(x+w/2), int(y+h/2 + 0.05*h))
+    cv2.circle(img, centre_coordinates, int(h/15), (255,0,0), 1)
 
 faceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(0)
