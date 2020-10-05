@@ -17,6 +17,8 @@ while True:
     print("ok")
     
     frame = vs.read()
+    frame = cv2.flip(frame,1)
+
 
     if frame is None:
         break
@@ -80,6 +82,7 @@ while True:
 
 	# start OpenCV object tracker using the supplied bounding box
 	# coordinates, then start the FPS throughput estimator as well
+	frame = cv2.flip(frame, 1)
         tracker.init(frame, initBB)
         fps = FPS().start()
 
