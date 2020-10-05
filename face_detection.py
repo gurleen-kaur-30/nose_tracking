@@ -3,6 +3,11 @@ import cv2
 
 def getNose(x,y,w,h,img):
     centre_coordinates = (int(x+w/2), int(y+h/2 + 0.05*h))
+    t = w/15
+    l = h/4
+    start_point = (int(x + w/2 - t), int(y + h/2 - 6 * l/10))
+    end_point = (int(x + w/2 + t), int(y + h/2 + 4 * l/10))
+    cv2.rectangle(img, start_point, end_point, (255, 0, 0), 1)
     cv2.circle(img, centre_coordinates, int(h/15), (255,0,0), 1)
 
 faceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
